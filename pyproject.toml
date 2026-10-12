@@ -1,0 +1,76 @@
+[project]
+name = "trosna-linear-regression"
+version = "0.1.0"
+description = "Linear least-squares regression with L1, Tikhonov and point-repulsion (barrier) regularization, scikit-learn compatible"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Andrey Ferubko", email = "ferubko1999@yandex.ru" }
+]
+requires-python = ">=3.11"
+keywords = [
+    "regression",
+    "regularization",
+    "tikhonov",
+    "ridge",
+    "lasso",
+    "elastic-net",
+    "barrier",
+    "constrained-regression",
+    "scikit-learn",
+    "forecasting",
+    "virtualization",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.26",
+    "scikit-learn>=1.6",
+    "scipy>=1.11",
+]
+
+[project.urls]
+Homepage = "https://github.com/89605502155/trosna-linear-regression"
+Repository = "https://github.com/89605502155/trosna-linear-regression"
+Documentation = "https://github.com/89605502155/trosna-linear-regression#readme"
+Issues = "https://github.com/89605502155/trosna-linear-regression/issues"
+
+[build-system]
+requires = ["uv_build>=0.11.9,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.100",
+    "matplotlib>=3.8",
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "N", "NPY", "RUF", "SIM", "PT", "C4", "PL", "TRY"]
+# Кириллица в комментариях и строках — не «опасные» символы; X — общепринятое имя матрицы признаков.
+# TRY004: sklearn ожидает ValueError на любой недопустимый гиперпараметр.
+ignore = ["RUF001", "RUF002", "RUF003", "PLR2004", "PLR0913", "N803", "N806", "TRY003", "TRY004"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["trosna_linear_regression"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
